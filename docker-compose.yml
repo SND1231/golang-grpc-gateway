@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  db-user:
+    image: mysql:5.7.22
+    restart: always
+    container_name: mysql-container-user
+    ports:
+      - 13306:3306
+    volumes:
+      - ./mysql/conf.d:/etc/mysql/conf.d
+    environment:
+      MYSQL_ROOT_PASSWORD: a1b2V4d
+      MYSQL_DATABASE: ramen_app
+  db-ramen:
+    image: mysql:5.7.22
+    restart: always
+    container_name: mysql-container-ramen
+    ports:
+      - 23306:3306
+    volumes:
+      - ./mysql/conf.d:/etc/mysql/conf.d
+    environment:
+      MYSQL_ROOT_PASSWORD: a1b2V4d
+      MYSQL_DATABASE: ramen_app
+

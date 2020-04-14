@@ -1,0 +1,48 @@
+syntax = "proto3";
+
+package grpc_custom.graphql;
+
+option go_package = "github.com/grpc-custom/graphql-gateway/proto;graphql";
+
+import "google/protobuf/descriptor.proto";
+
+extend google.protobuf.MethodOptions {
+  Schema schema = 88916;
+}
+
+extend google.protobuf.FieldOptions {
+  Field field = 88916;
+}
+
+extend google.protobuf.MessageOptions {
+  Object object = 88916;
+}
+
+message CacheControl {
+  string max_age = 1;
+}
+
+message Schema {
+  oneof type {
+    string query     = 1;
+    string mutation  = 2;
+    string subscribe = 3;
+  }
+  string       description   = 4;
+  CacheControl cache_control = 5;
+}
+
+message Field {
+  bool   nullable    = 1;
+  string description = 2;
+  oneof default {
+    string default_string = 3;
+    int64  default_number = 4;
+  }
+  bool inline = 5;
+}
+
+message Object {
+  string name        = 1;
+  string description = 2;
+}

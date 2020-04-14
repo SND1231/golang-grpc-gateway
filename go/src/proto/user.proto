@@ -1,0 +1,74 @@
+syntax = "proto3";
+package user;
+
+import "github.com/grpc-custom/graphql-gateway/graphql.proto";
+
+message User {
+  int32 id    = 1;
+  string name = 2;
+  string email= 3;
+  string photoUrl =4;
+}
+
+message GetUserRequest {
+  int32 id = 1;
+}
+
+message GetUserResponse {
+  User user = 1;
+}
+
+message GetUserListRequest {
+  string name = 1;
+}
+
+message GetUserListResponse {
+  repeated User userList = 1;
+}
+
+message CreateUserRequest {
+  string name = 1;
+  string email= 2;
+  string photo_url =3;
+}
+
+message CreateUserResponse {
+  int32 id = 1;
+}
+
+message UpdateUserRequest {
+  int32 id = 1;
+  string name = 2;
+  string email= 3;
+  string photo_url =4;
+}
+
+message UpdateUserResponse {
+  int32 id = 1;
+}
+
+service UserService {
+  rpc GetUser(GetUserRequest) returns (GetUserResponse) {
+    // graphql-gatewayのカスタムオプションを指定する
+    option (grpc_custom.graphql.schema) = {
+      query: "getUser" // GraphQLのクエリー文字指定
+    };
+  }
+  rpc GetUserList(GetUserListRequest) returns (GetUserListResponse) {
+    // graphql-gatewayのカスタムオプションを指定する
+    option (grpc_custom.graphql.schema) = {
+      query: "getUserList" // GraphQLのクエリー文字指定
+    };
+  }
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {
+    option (grpc_custom.graphql.schema) = {
+      mutation: "createUser"
+    };
+  }
+  rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {
+    option (grpc_custom.graphql.schema) = {
+      mutation: "updateUser"
+    };
+  }
+}
+
