@@ -53,13 +53,10 @@ func UpdateUser(request pb.UpdateUserRequest) (int32, error) {
 
     db := db.Connection()
     defer db.Close()
-
     user := model.User{}
     db.Find(&user, id)
     
     db.Model(&user).UpdateColumns(user_param)
-    if db.NewRecord(user_param) == false {
-        return id, nil
-    }
-    return 0, errors.NewError("fail to create user")
+    return id, nil
+    
 }
