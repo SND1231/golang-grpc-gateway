@@ -23,6 +23,6 @@
 /vendor/
 /Godeps/
 
-./go/pkg/*
+/go/pkg/*
 
 # End of https://www.gitignore.io/api/go

@@ -1,0 +1,50 @@
+type User {
+  id: Int!
+  email: String!  
+  password: String!
+  name: String!
+  photoUrl: String!
+}
+
+type LoginInfo {
+    id: Int!
+    token: String!
+}
+
+input GetUserInput{
+    id: Int!
+}
+
+input GetUserListInput{
+    name: String!
+}
+
+type Query {
+  user(input: GetUserInput): User!
+  users: [User!]!
+}
+
+
+input CreateUserInput{
+  email: String!  
+  password: String!
+  name: String!
+  photoUrl: String!
+}
+
+input UpdateUserInput{
+  id: Int!
+  email: String!  
+  password: String!
+  name: String!
+  photoUrl: String!
+}
+
+type UserId{
+    id: Int!
+}
+
+type Mutation {
+    createUser(input: CreateUserInput!): LoginInfo!
+    updateUser(input: UpdateUserInput!): UserId!
+}

@@ -1,16 +1,16 @@
 package model
 
 import (
-    "time"
+	"time"
 )
 
 type User struct {
-    ID       int32
-    Name     string
-    Email  string
-    PhotoUrl string
-    CreatedAt time.Time
-    UpdatedAt time.Time
-    DeletedAt *time.Time
+	ID        int32
+	Name      string
+	Email     string
+	PhotoUrl  string
+	Password  string
+	CreatedAt time.Time
+	UpdatedAt time.Time
+	DeletedAt *time.Time
 }
-

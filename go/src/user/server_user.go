@@ -5,9 +5,9 @@ import (
 	"log"
 	"net"
 
+	pb "app/user/proto"
+	user_app_service "app/user/user_app_service"
 	"google.golang.org/grpc"
-	pb "app/user/pb"
-	app_service "app/user/app_service"
 )
 
 const (
@@ -22,22 +22,34 @@ type server struct {
 // GET User
 func (s *server) GetUser(ctx context.Context, in *pb.GetUserRequest) (*pb.GetUserResponse, error) {
 	var id = in.Id
-	var user, err = app_service.GetUser(id)
+	var user, err = user_app_service.GetUser(id)
 	return &pb.GetUserResponse{User: &user}, err
 }
 
-func (s *server) GetUserList(ctx context.Context, in *pb.GetUserListRequest) (*pb.GetUserListResponse, error) {
-	var userList, err = app_service.GetUserList()
-	return &pb.GetUserListResponse{UserList: userList}, err
+// Login
+func (s *server) Login(ctx context.Context, in *pb.LoginRequest) (*pb.LoginResponse, error) {
+	var request = *in
+	var id, token, err = user_app_service.LoginUser(request)
+	if err == nil {
+		return &pb.LoginResponse{Id: id, Token: token}, nil
+	} else {
+		return &pb.LoginResponse{}, err
+	}
+}
+
+// GET Users
+func (s *server) GetUsers(ctx context.Context, in *pb.GetUsersRequest) (*pb.GetUsersResponse, error) {
+	var users, err = user_app_service.GetUsers(*in)
+	return &pb.GetUsersResponse{Users: users}, err
 }
 
 // Create User
 func (s *server) CreateUser(ctx context.Context, in *pb.CreateUserRequest) (*pb.CreateUserResponse, error) {
 	var request = *in
-	var id, err = app_service.CreateUser(request)
-	if err == nil{
-		return &pb.CreateUserResponse{Id: id}, nil
-	}else{
+	var id, token, err = user_app_service.CreateUser(request)
+	if err == nil {
+		return &pb.CreateUserResponse{Id: id, Token: token}, nil
+	} else {
 		return &pb.CreateUserResponse{}, err
 	}
 }
@@ -45,10 +57,10 @@ func (s *server) CreateUser(ctx context.Context, in *pb.CreateUserRequest) (*pb.
 // Update User
 func (s *server) UpdateUser(ctx context.Context, in *pb.UpdateUserRequest) (*pb.UpdateUserResponse, error) {
 	var request = *in
-	var id, err = app_service.UpdateUser(request)
-	if err == nil{
+	var id, err = user_app_service.UpdateUser(request)
+	if err == nil {
 		return &pb.UpdateUserResponse{Id: id}, nil
-	}else{
+	} else {
 		return &pb.UpdateUserResponse{}, err
 	}
 }
