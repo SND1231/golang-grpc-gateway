@@ -2,21 +2,21 @@ package main
 
 import (
 	"context"
+	"encoding/json"
 	"errors"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gorilla/handlers"
 	"log"
 	"net/http"
-	"encoding/json"
 
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/metadata"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
 	"google.golang.org/genproto/googleapis/rpc/errdetails"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/metadata"
+	"google.golang.org/grpc/status"
 
-	//"app/book" // protocで生成されたファイルをimport
+	post "app/post/proto"
 	user "app/user/proto"
 )
 
@@ -50,6 +50,8 @@ func CheckAuthorization(method string, authorization string) bool {
 	case "/user.UserService/Login":
 		return true
 	case "/user.UserService/CreateUser":
+		return true
+	case "/post.PostService/GetPosts":
 		return true
 	default:
 		return AuthToken(authorization)
@@ -97,12 +99,12 @@ func CustomHTTPError(ctx context.Context, _ *runtime.ServeMux, marshaler runtime
 		case *errdetails.BadRequest:
 			for _, violation := range t.GetFieldViolations() {
 				detail_list = append(detail_list,
-					                 map[string]interface{}{"feild":violation.GetField(),"description":violation.GetDescription()})
+					map[string]interface{}{"feild": violation.GetField(), "description": violation.GetDescription()})
 			}
 		}
 	}
 
-	err_body := map[string]interface{}{"error":grpc.ErrorDesc(err),"details": detail_list}
+	err_body := map[string]interface{}{"error": grpc.ErrorDesc(err), "details": detail_list}
 	jErr := json.NewEncoder(w).Encode(err_body)
 
 	if jErr != nil {
@@ -125,6 +127,11 @@ func main() {
 	}
 	// gRPCのUserServiceにアクセスするための定義を追加
 	err := user.RegisterUserServiceHandlerFromEndpoint(ctx, mux, "localhost:9001", opts)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	err = post.RegisterPostServiceHandlerFromEndpoint(ctx, mux, "localhost:9002", opts)
 	if err != nil {
 		log.Fatal(err)
 	}

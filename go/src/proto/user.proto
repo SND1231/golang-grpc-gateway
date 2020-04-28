@@ -42,7 +42,7 @@ message LoginResponse {
 message CreateUserRequest {
   string name = 1;
   string email= 2;
-  string photo_url =3;
+  string photoUrl =3;
   string password = 4;
 }
 

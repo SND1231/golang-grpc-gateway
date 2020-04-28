@@ -3,13 +3,13 @@ package user_service
 import (
 	"app/user/db"
 	"app/user/model"
-	"github.com/dgrijalva/jwt-go"
-	"log"
+	pb "app/user/proto"
 	"fmt"
+	"github.com/dgrijalva/jwt-go"
+	"google.golang.org/genproto/googleapis/rpc/errdetails"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
-	"google.golang.org/genproto/googleapis/rpc/errdetails"
-	pb "app/user/proto"
+	"log"
 )
 
 //error_list [], err_msg string
@@ -30,7 +30,7 @@ func CreateError(code codes.Code, error_list []*errdetails.BadRequest_FieldViola
 	return st.Err()
 }
 
-func CreateBadRequest_FieldViolation(feild string, desc string) *errdetails.BadRequest_FieldViolation{
+func CreateBadRequest_FieldViolation(feild string, desc string) *errdetails.BadRequest_FieldViolation {
 	return &errdetails.BadRequest_FieldViolation{
 		Field:       feild,
 		Description: desc,
@@ -39,16 +39,16 @@ func CreateBadRequest_FieldViolation(feild string, desc string) *errdetails.BadR
 
 func CheckGetUsersRequest(request pb.GetUsersRequest) error {
 	var error_list []*errdetails.BadRequest_FieldViolation
-	if request.Limit == 0{
-		error_list = append(error_list, CreateBadRequest_FieldViolation("Limit", "値が設定されていません"))	
+	if request.Limit == 0 {
+		error_list = append(error_list, CreateBadRequest_FieldViolation("Limit", "値が設定されていません"))
 	}
-	if request.Limit == 0{
-		error_list = append(error_list, CreateBadRequest_FieldViolation("id", "値が設定されていません"))	
+	if request.Limit == 0 {
+		error_list = append(error_list, CreateBadRequest_FieldViolation("id", "値が設定されていません"))
 	}
 
-	if len(error_list) > 0{
+	if len(error_list) > 0 {
 		return CreateError(codes.InvalidArgument, error_list)
-	}else{
+	} else {
 		return nil
 	}
 }
@@ -62,9 +62,9 @@ func CheckLoginUserRequest(request pb.LoginRequest) error {
 		error_list = append(error_list, CreateBadRequest_FieldViolation("Password", "必須です"))
 	}
 
-	if len(error_list) > 0{
+	if len(error_list) > 0 {
 		return CreateError(codes.InvalidArgument, error_list)
-	}else{
+	} else {
 		return nil
 	}
 }
@@ -72,18 +72,18 @@ func CheckLoginUserRequest(request pb.LoginRequest) error {
 func CheckCreateUserRequest(request pb.CreateUserRequest) error {
 	var error_list []*errdetails.BadRequest_FieldViolation
 	if request.Name == "" {
-		error_list = append(error_list, CreateBadRequest_FieldViolation("Name", "必須です"))
+		error_list = append(error_list, CreateBadRequest_FieldViolation("名前", "必須です"))
 	}
 	if request.Email == "" {
 		error_list = append(error_list, CreateBadRequest_FieldViolation("Email", "必須です"))
 	}
 	if request.Password == "" {
-		error_list = append(error_list, CreateBadRequest_FieldViolation("Password", "必須です"))
+		error_list = append(error_list, CreateBadRequest_FieldViolation("パスワード", "必須です"))
 	}
 
-	if len(error_list) > 0{
+	if len(error_list) > 0 {
 		return CreateError(codes.InvalidArgument, error_list)
-	}else{
+	} else {
 		return nil
 	}
 }
@@ -95,13 +95,13 @@ func UserExistsById(email string, id int) error {
 
 	db.Where("email = ? AND id <> ?", email, id).First(&user)
 	log.Println(user.ID)
-	if user.ID != 0{
+	if user.ID != 0 {
 		return status.New(codes.AlreadyExists, "設定したEmailのユーザが他に存在します").Err()
 	}
 	return nil
 }
 
-func CheckUserExists(email string) error {	
+func CheckUserExists(email string) error {
 	return UserExistsById(email, 0)
 }
 
@@ -112,15 +112,15 @@ func CheckUserExistsForUpdate(email string, id int) error {
 func CheckUpdateUserRequest(request pb.UpdateUserRequest) error {
 	var error_list []*errdetails.BadRequest_FieldViolation
 	if request.Name == "" {
-		error_list = append(error_list, CreateBadRequest_FieldViolation("Name", "必須です"))
+		error_list = append(error_list, CreateBadRequest_FieldViolation("名前", "必須です"))
 	}
 	if request.Email == "" {
 		error_list = append(error_list, CreateBadRequest_FieldViolation("Email", "必須です"))
 	}
 
-	if len(error_list) > 0{
+	if len(error_list) > 0 {
 		return CreateError(codes.InvalidArgument, error_list)
-	}else{
+	} else {
 		return nil
 	}
 }

@@ -1,0 +1,78 @@
+package main
+
+import (
+	"context"
+	"log"
+	"net"
+
+	post_app_service "app/post/post_app_service"
+	pb "app/post/proto"
+	"google.golang.org/grpc"
+)
+
+const (
+	port = ":9002"
+)
+
+// server is used to implement helloworld.GreeterServer.
+type server struct {
+	pb.UnimplementedPostServiceServer
+}
+
+// GET Post
+func (s *server) GetPost(ctx context.Context, in *pb.GetPostRequest) (*pb.GetPostResponse, error) {
+	id := in.Id
+	post, err := post_app_service.GetPost(id)
+	return &pb.GetPostResponse{Post: &post}, err
+}
+
+// GET Posts
+func (s *server) GetPosts(ctx context.Context, in *pb.GetPostsRequest) (*pb.GetPostsResponse, error) {
+	posts, err := post_app_service.GetPosts(*in)
+	return &pb.GetPostsResponse{Posts: posts}, err
+}
+
+// Create Post
+func (s *server) CreatePost(ctx context.Context, in *pb.CreatePostRequest) (*pb.CreatePostResponse, error) {
+	request := *in
+	id, err := post_app_service.CreatePost(request)
+	if err == nil {
+		return &pb.CreatePostResponse{Id: id}, nil
+	} else {
+		return &pb.CreatePostResponse{}, err
+	}
+}
+
+// Update Post
+func (s *server) UpdatePost(ctx context.Context, in *pb.UpdatePostRequest) (*pb.UpdatePostResponse, error) {
+	request := *in
+	id, err := post_app_service.UpdatePost(request)
+	if err == nil {
+		return &pb.UpdatePostResponse{Id: id}, nil
+	} else {
+		return &pb.UpdatePostResponse{}, err
+	}
+}
+
+// Delete Post
+func (s *server) DeletePost(ctx context.Context, in *pb.DeletePostRequest) (*pb.DeletePostResponse, error) {
+	request := *in
+	id, err := post_app_service.DeletePost(request)
+	if err == nil {
+		return &pb.DeletePostResponse{Id: id}, nil
+	} else {
+		return &pb.DeletePostResponse{}, err
+	}
+}
+
+func main() {
+	lis, err := net.Listen("tcp", port)
+	if err != nil {
+		log.Fatalf("failed to listen: %v", err)
+	}
+	s := grpc.NewServer()
+	pb.RegisterPostServiceServer(s, &server{})
+	if err := s.Serve(lis); err != nil {
+		log.Fatalf("failed to serve: %v", err)
+	}
+}

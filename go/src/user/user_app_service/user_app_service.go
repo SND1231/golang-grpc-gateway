@@ -13,21 +13,21 @@ import (
 
 func GetUsers(request pb.GetUsersRequest) ([]*pb.User, error) {
 	var users []model.User
-    var userList []*pb.User
-	
+	var userList []*pb.User
+
 	err := user_service.CheckGetUsersRequest(request)
 	if err != nil {
 		return userList, err
 	}
 
-    limit := request.Limit
-    offset := limit * (request.Offset-1)
+	limit := request.Limit
+	offset := limit * (request.Offset - 1)
 	id := request.Id
 
 	db := db.Connection()
 	defer db.Close()
-    db.Where("id <> ?", id).Limit(limit).Offset(offset).
-       Find(&users).Scan(&userList)
+	db.Where("id <> ?", id).Limit(limit).Offset(offset).
+		Find(&users).Scan(&userList)
 
 	return userList, nil
 }
@@ -49,7 +49,7 @@ func LoginUser(request pb.LoginRequest) (int32, string, error) {
 
 	err := user_service.CheckLoginUserRequest(request)
 	if err != nil {
-		return -1, "",  err
+		return -1, "", err
 	}
 
 	db := db.Connection()
@@ -71,7 +71,7 @@ func LoginUser(request pb.LoginRequest) (int32, string, error) {
 func CreateUser(request pb.CreateUserRequest) (int32, string, error) {
 	var hash []byte
 	err := user_service.CheckCreateUserRequest(request)
-	if err != nil{
+	if err != nil {
 		return -1, "", err
 	}
 
@@ -101,13 +101,13 @@ func CreateUser(request pb.CreateUserRequest) (int32, string, error) {
 
 func UpdateUser(request pb.UpdateUserRequest) (int32, error) {
 	err := user_service.CheckUpdateUserRequest(request)
-	if err != nil{
+	if err != nil {
 		return -1, err
 	}
 
 	var id = request.Id
 	err = user_service.CheckUserExistsForUpdate(request.Email, int(id))
-	if err != nil{
+	if err != nil {
 		return -1, err
 	}
 
