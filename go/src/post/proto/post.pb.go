@@ -566,6 +566,280 @@ func (m *DeletePostResponse) GetId() int32 {
 	return 0
 }
 
+type CreateLikeRequest struct {
+	UserId               int32    `protobuf:"varint,1,opt,name=userId,proto3" json:"userId,omitempty"`
+	PostId               int32    `protobuf:"varint,2,opt,name=postId,proto3" json:"postId,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CreateLikeRequest) Reset()         { *m = CreateLikeRequest{} }
+func (m *CreateLikeRequest) String() string { return proto.CompactTextString(m) }
+func (*CreateLikeRequest) ProtoMessage()    {}
+func (*CreateLikeRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_e114ad14deab1dd1, []int{11}
+}
+
+func (m *CreateLikeRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateLikeRequest.Unmarshal(m, b)
+}
+func (m *CreateLikeRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateLikeRequest.Marshal(b, m, deterministic)
+}
+func (m *CreateLikeRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateLikeRequest.Merge(m, src)
+}
+func (m *CreateLikeRequest) XXX_Size() int {
+	return xxx_messageInfo_CreateLikeRequest.Size(m)
+}
+func (m *CreateLikeRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateLikeRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateLikeRequest proto.InternalMessageInfo
+
+func (m *CreateLikeRequest) GetUserId() int32 {
+	if m != nil {
+		return m.UserId
+	}
+	return 0
+}
+
+func (m *CreateLikeRequest) GetPostId() int32 {
+	if m != nil {
+		return m.PostId
+	}
+	return 0
+}
+
+type CreateLikeResponse struct {
+	Id                   int32    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Count                int32    `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CreateLikeResponse) Reset()         { *m = CreateLikeResponse{} }
+func (m *CreateLikeResponse) String() string { return proto.CompactTextString(m) }
+func (*CreateLikeResponse) ProtoMessage()    {}
+func (*CreateLikeResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_e114ad14deab1dd1, []int{12}
+}
+
+func (m *CreateLikeResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateLikeResponse.Unmarshal(m, b)
+}
+func (m *CreateLikeResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateLikeResponse.Marshal(b, m, deterministic)
+}
+func (m *CreateLikeResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateLikeResponse.Merge(m, src)
+}
+func (m *CreateLikeResponse) XXX_Size() int {
+	return xxx_messageInfo_CreateLikeResponse.Size(m)
+}
+func (m *CreateLikeResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateLikeResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateLikeResponse proto.InternalMessageInfo
+
+func (m *CreateLikeResponse) GetId() int32 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
+func (m *CreateLikeResponse) GetCount() int32 {
+	if m != nil {
+		return m.Count
+	}
+	return 0
+}
+
+type DeleteLikeRequest struct {
+	Id                   int32    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *DeleteLikeRequest) Reset()         { *m = DeleteLikeRequest{} }
+func (m *DeleteLikeRequest) String() string { return proto.CompactTextString(m) }
+func (*DeleteLikeRequest) ProtoMessage()    {}
+func (*DeleteLikeRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_e114ad14deab1dd1, []int{13}
+}
+
+func (m *DeleteLikeRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteLikeRequest.Unmarshal(m, b)
+}
+func (m *DeleteLikeRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteLikeRequest.Marshal(b, m, deterministic)
+}
+func (m *DeleteLikeRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteLikeRequest.Merge(m, src)
+}
+func (m *DeleteLikeRequest) XXX_Size() int {
+	return xxx_messageInfo_DeleteLikeRequest.Size(m)
+}
+func (m *DeleteLikeRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteLikeRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DeleteLikeRequest proto.InternalMessageInfo
+
+func (m *DeleteLikeRequest) GetId() int32 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
+type DeleteLikeResponse struct {
+	Id                   int32    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Count                int32    `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *DeleteLikeResponse) Reset()         { *m = DeleteLikeResponse{} }
+func (m *DeleteLikeResponse) String() string { return proto.CompactTextString(m) }
+func (*DeleteLikeResponse) ProtoMessage()    {}
+func (*DeleteLikeResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_e114ad14deab1dd1, []int{14}
+}
+
+func (m *DeleteLikeResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteLikeResponse.Unmarshal(m, b)
+}
+func (m *DeleteLikeResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteLikeResponse.Marshal(b, m, deterministic)
+}
+func (m *DeleteLikeResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteLikeResponse.Merge(m, src)
+}
+func (m *DeleteLikeResponse) XXX_Size() int {
+	return xxx_messageInfo_DeleteLikeResponse.Size(m)
+}
+func (m *DeleteLikeResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteLikeResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DeleteLikeResponse proto.InternalMessageInfo
+
+func (m *DeleteLikeResponse) GetId() int32 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
+func (m *DeleteLikeResponse) GetCount() int32 {
+	if m != nil {
+		return m.Count
+	}
+	return 0
+}
+
+type CheckLikedRequest struct {
+	UserId               int32    `protobuf:"varint,1,opt,name=userId,proto3" json:"userId,omitempty"`
+	PostId               int32    `protobuf:"varint,2,opt,name=postId,proto3" json:"postId,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CheckLikedRequest) Reset()         { *m = CheckLikedRequest{} }
+func (m *CheckLikedRequest) String() string { return proto.CompactTextString(m) }
+func (*CheckLikedRequest) ProtoMessage()    {}
+func (*CheckLikedRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_e114ad14deab1dd1, []int{15}
+}
+
+func (m *CheckLikedRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CheckLikedRequest.Unmarshal(m, b)
+}
+func (m *CheckLikedRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CheckLikedRequest.Marshal(b, m, deterministic)
+}
+func (m *CheckLikedRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CheckLikedRequest.Merge(m, src)
+}
+func (m *CheckLikedRequest) XXX_Size() int {
+	return xxx_messageInfo_CheckLikedRequest.Size(m)
+}
+func (m *CheckLikedRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CheckLikedRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CheckLikedRequest proto.InternalMessageInfo
+
+func (m *CheckLikedRequest) GetUserId() int32 {
+	if m != nil {
+		return m.UserId
+	}
+	return 0
+}
+
+func (m *CheckLikedRequest) GetPostId() int32 {
+	if m != nil {
+		return m.PostId
+	}
+	return 0
+}
+
+type CheckLikedResponse struct {
+	Id                   int32    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Liked                bool     `protobuf:"varint,2,opt,name=liked,proto3" json:"liked,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CheckLikedResponse) Reset()         { *m = CheckLikedResponse{} }
+func (m *CheckLikedResponse) String() string { return proto.CompactTextString(m) }
+func (*CheckLikedResponse) ProtoMessage()    {}
+func (*CheckLikedResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_e114ad14deab1dd1, []int{16}
+}
+
+func (m *CheckLikedResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CheckLikedResponse.Unmarshal(m, b)
+}
+func (m *CheckLikedResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CheckLikedResponse.Marshal(b, m, deterministic)
+}
+func (m *CheckLikedResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CheckLikedResponse.Merge(m, src)
+}
+func (m *CheckLikedResponse) XXX_Size() int {
+	return xxx_messageInfo_CheckLikedResponse.Size(m)
+}
+func (m *CheckLikedResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CheckLikedResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CheckLikedResponse proto.InternalMessageInfo
+
+func (m *CheckLikedResponse) GetId() int32 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
+func (m *CheckLikedResponse) GetLiked() bool {
+	if m != nil {
+		return m.Liked
+	}
+	return false
+}
+
 func init() {
 	proto.RegisterType((*Post)(nil), "post.Post")
 	proto.RegisterType((*GetPostRequest)(nil), "post.GetPostRequest")
@@ -578,6 +852,12 @@ func init() {
 	proto.RegisterType((*UpdatePostResponse)(nil), "post.UpdatePostResponse")
 	proto.RegisterType((*DeletePostRequest)(nil), "post.DeletePostRequest")
 	proto.RegisterType((*DeletePostResponse)(nil), "post.DeletePostResponse")
+	proto.RegisterType((*CreateLikeRequest)(nil), "post.CreateLikeRequest")
+	proto.RegisterType((*CreateLikeResponse)(nil), "post.CreateLikeResponse")
+	proto.RegisterType((*DeleteLikeRequest)(nil), "post.DeleteLikeRequest")
+	proto.RegisterType((*DeleteLikeResponse)(nil), "post.DeleteLikeResponse")
+	proto.RegisterType((*CheckLikedRequest)(nil), "post.CheckLikedRequest")
+	proto.RegisterType((*CheckLikedResponse)(nil), "post.CheckLikedResponse")
 }
 
 func init() {
@@ -585,39 +865,48 @@ func init() {
 }
 
 var fileDescriptor_e114ad14deab1dd1 = []byte{
-	// 502 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x94, 0xcf, 0x6e, 0xd4, 0x30,
-	0x10, 0xc6, 0x95, 0x7f, 0xdb, 0x76, 0x56, 0x5a, 0xba, 0x66, 0x59, 0x4c, 0x54, 0x55, 0x91, 0xd5,
-	0x43, 0xd5, 0x43, 0xa3, 0x16, 0x4e, 0x70, 0x04, 0x09, 0x21, 0x21, 0x84, 0x16, 0xed, 0x85, 0x5b,
-	0xd8, 0xb8, 0xc5, 0x52, 0x1a, 0xa7, 0xb1, 0x5b, 0x09, 0x95, 0x5e, 0x78, 0x05, 0x9e, 0x89, 0x27,
-	0xe0, 0x15, 0x78, 0x10, 0xe4, 0x89, 0x93, 0x6c, 0x12, 0x22, 0x2e, 0xbd, 0x65, 0xec, 0xf1, 0x6f,
-	0xbe, 0x99, 0x6f, 0x14, 0x80, 0x42, 0x2a, 0x7d, 0x5a, 0x94, 0x52, 0x4b, 0xe2, 0x9b, 0xef, 0xf0,
-	0xe0, 0x52, 0xca, 0xcb, 0x8c, 0xc7, 0x49, 0x21, 0xe2, 0x24, 0xcf, 0xa5, 0x4e, 0xb4, 0x90, 0xb9,
-	0xaa, 0x72, 0xd8, 0x77, 0xf0, 0x3f, 0x4a, 0xa5, 0xc9, 0x0c, 0x5c, 0x91, 0x52, 0x27, 0x72, 0x8e,
-	0x83, 0x95, 0x2b, 0x52, 0xb2, 0x84, 0x89, 0x16, 0x5a, 0x67, 0x9c, 0xba, 0x91, 0x73, 0xbc, 0xb7,
-	0xb2, 0x11, 0xa1, 0xb0, 0xb3, 0x91, 0xb9, 0xe6, 0xb9, 0xa6, 0x1e, 0x5e, 0xd4, 0x21, 0x09, 0x61,
-	0xb7, 0xf8, 0x2a, 0xb5, 0x5c, 0x97, 0x19, 0x0d, 0xf0, 0xaa, 0x89, 0x0d, 0xed, 0x46, 0xf1, 0xf2,
-	0x5d, 0x4a, 0x27, 0x58, 0xc1, 0x46, 0x2c, 0x82, 0xd9, 0x5b, 0xae, 0x8d, 0x80, 0x15, 0xbf, 0xbe,
-	0xe1, 0x43, 0x1d, 0xec, 0x0c, 0x1e, 0x35, 0x19, 0xaa, 0x90, 0xb9, 0xe2, 0xe4, 0x10, 0xb0, 0x31,
-	0x4c, 0x9a, 0x9e, 0xc3, 0x29, 0x76, 0x8c, 0x19, 0x78, 0xce, 0x36, 0xcd, 0x13, 0x55, 0x53, 0x17,
-	0x10, 0x64, 0xe2, 0x4a, 0x68, 0x0b, 0xae, 0x02, 0xa3, 0x4a, 0x5e, 0x5c, 0x28, 0xae, 0xb1, 0xc7,
-	0x60, 0x65, 0x23, 0xab, 0xc1, 0x6b, 0x66, 0x41, 0xc0, 0xcf, 0x93, 0x2b, 0x4e, 0x7d, 0xec, 0x0a,
-	0xbf, 0xd9, 0x0b, 0xd8, 0x6f, 0x8b, 0x58, 0x61, 0x11, 0x04, 0x46, 0x80, 0xa2, 0x4e, 0xe4, 0xf5,
-	0x94, 0x55, 0x17, 0xec, 0x1b, 0xcc, 0x5f, 0x97, 0x3c, 0xd1, 0x7c, 0xbb, 0xe5, 0x76, 0xd4, 0xce,
-	0xd8, 0xa8, 0xdd, 0xf1, 0x51, 0x7b, 0xa3, 0xa3, 0xf6, 0x3b, 0xa3, 0x3e, 0x02, 0xb2, 0x5d, 0xda,
-	0x4a, 0xee, 0x8f, 0xfb, 0x1a, 0xe6, 0xeb, 0x22, 0xed, 0x09, 0x7c, 0xd8, 0xdd, 0xf0, 0xbb, 0x82,
-	0x8d, 0xb0, 0xed, 0x92, 0x23, 0xc2, 0x5e, 0xc1, 0xfc, 0x0d, 0xcf, 0xf8, 0x7f, 0x85, 0xd9, 0xde,
-	0xdd, 0x7e, 0xef, 0xdb, 0x8f, 0xff, 0x5d, 0xe2, 0xfc, 0x97, 0x07, 0x53, 0x93, 0xf0, 0x89, 0x97,
-	0xb7, 0x62, 0xc3, 0xc9, 0x07, 0xd8, 0xb1, 0x16, 0x93, 0x45, 0x65, 0x65, 0x77, 0x57, 0xc3, 0x27,
-	0xbd, 0xd3, 0x8a, 0xcb, 0x96, 0x3f, 0x7e, 0xff, 0xf9, 0xe9, 0xee, 0x93, 0x59, 0x7c, 0x7b, 0x16,
-	0xa3, 0xef, 0xf1, 0x9d, 0x48, 0xef, 0xc9, 0x7b, 0xd8, 0xad, 0x57, 0x86, 0x74, 0x9f, 0xd6, 0x7b,
-	0x1a, 0x2e, 0xfb, 0xc7, 0x16, 0x39, 0x47, 0xe4, 0x94, 0xec, 0x35, 0x48, 0xb2, 0x06, 0x68, 0xfd,
-	0x24, 0x4f, 0xab, 0x87, 0x83, 0xe5, 0x0a, 0xe9, 0xf0, 0xc2, 0x32, 0x17, 0xc8, 0x9c, 0xb1, 0x96,
-	0xf9, 0xd2, 0x39, 0x21, 0x9f, 0x01, 0x5a, 0x37, 0x6a, 0xec, 0x60, 0x25, 0x6a, 0xec, 0xd0, 0x38,
-	0xf6, 0x0c, 0xb1, 0x8f, 0xc3, 0x5e, 0xf7, 0x86, 0xcd, 0x01, 0x5a, 0x1b, 0x6a, 0xf6, 0xc0, 0xd5,
-	0x9a, 0x3d, 0x74, 0x8c, 0x1d, 0x21, 0xfb, 0xf0, 0xe4, 0xa0, 0xcb, 0x8e, 0x8d, 0xcd, 0xf1, 0x5d,
-	0x65, 0xf6, 0xfd, 0x97, 0x09, 0xfe, 0xd9, 0x9e, 0xff, 0x0d, 0x00, 0x00, 0xff, 0xff, 0x38, 0x4f,
-	0x0c, 0xbb, 0x0b, 0x05, 0x00, 0x00,
+	// 641 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x55, 0x4d, 0x6f, 0xd3, 0x40,
+	0x14, 0x94, 0x1d, 0x3b, 0x4d, 0x5f, 0xa4, 0xd0, 0x2c, 0x21, 0x18, 0x53, 0xaa, 0x68, 0xdb, 0x43,
+	0x95, 0x43, 0xad, 0x16, 0x4e, 0xe1, 0x58, 0x24, 0x84, 0x54, 0x21, 0x14, 0x14, 0x21, 0x71, 0x0b,
+	0xf1, 0xb6, 0xb5, 0xea, 0x7a, 0x5d, 0x7b, 0x53, 0x09, 0x85, 0x5c, 0xf8, 0x0b, 0xfc, 0x34, 0x8e,
+	0x5c, 0xf9, 0x21, 0x68, 0xbf, 0xec, 0xb5, 0x8d, 0x85, 0x04, 0xdc, 0xf2, 0xf6, 0x63, 0xde, 0xbc,
+	0xd9, 0x19, 0x07, 0x20, 0xa5, 0x39, 0x3b, 0x49, 0x33, 0xca, 0x28, 0x72, 0xf8, 0x6f, 0x7f, 0xff,
+	0x8a, 0xd2, 0xab, 0x98, 0x04, 0xcb, 0x34, 0x0a, 0x96, 0x49, 0x42, 0xd9, 0x92, 0x45, 0x34, 0xc9,
+	0xe5, 0x19, 0xfc, 0x05, 0x9c, 0x77, 0x34, 0x67, 0x68, 0x00, 0x76, 0x14, 0x7a, 0xd6, 0xc4, 0x3a,
+	0x76, 0xe7, 0x76, 0x14, 0xa2, 0x31, 0x74, 0x59, 0xc4, 0x58, 0x4c, 0x3c, 0x7b, 0x62, 0x1d, 0xef,
+	0xce, 0x55, 0x85, 0x3c, 0xd8, 0x59, 0xd1, 0x84, 0x91, 0x84, 0x79, 0x1d, 0xb1, 0xa1, 0x4b, 0xe4,
+	0x43, 0x2f, 0xbd, 0xa6, 0x8c, 0x2e, 0xb2, 0xd8, 0x73, 0xc5, 0x56, 0x51, 0x73, 0xb4, 0x75, 0x4e,
+	0xb2, 0x37, 0xa1, 0xd7, 0x15, 0x1d, 0x54, 0x85, 0x27, 0x30, 0x78, 0x4d, 0x18, 0x27, 0x30, 0x27,
+	0x77, 0x6b, 0xd2, 0xe4, 0x81, 0x4f, 0xe1, 0x41, 0x71, 0x22, 0x4f, 0x69, 0x92, 0x13, 0x74, 0x00,
+	0x62, 0x30, 0x71, 0xa8, 0x7f, 0x06, 0x27, 0x62, 0x62, 0x71, 0x42, 0xac, 0xe3, 0x55, 0x71, 0x25,
+	0xd7, 0xa8, 0x23, 0x70, 0xe3, 0xe8, 0x36, 0x62, 0x0a, 0x58, 0x16, 0x9c, 0x15, 0xbd, 0xbc, 0xcc,
+	0x09, 0x13, 0x33, 0xba, 0x73, 0x55, 0x29, 0x0e, 0x9d, 0x42, 0x0b, 0x04, 0x4e, 0xb2, 0xbc, 0x25,
+	0x9e, 0x23, 0xa6, 0x12, 0xbf, 0xf1, 0x0b, 0xd8, 0x2b, 0x9b, 0x28, 0x62, 0x13, 0x70, 0x39, 0x81,
+	0xdc, 0xb3, 0x26, 0x9d, 0x1a, 0x33, 0xb9, 0x81, 0x3f, 0xc3, 0xf0, 0x3c, 0x23, 0x4b, 0x46, 0xcc,
+	0x91, 0x4b, 0xa9, 0xad, 0x36, 0xa9, 0xed, 0x76, 0xa9, 0x3b, 0xad, 0x52, 0x3b, 0x15, 0xa9, 0x8f,
+	0x00, 0x99, 0xad, 0x15, 0xe5, 0xba, 0xdc, 0x77, 0x30, 0x5c, 0xa4, 0x61, 0x8d, 0xe0, 0xff, 0xf5,
+	0x86, 0x53, 0x25, 0xcc, 0x89, 0x99, 0x2d, 0x5b, 0x88, 0xbd, 0x84, 0xe1, 0x2b, 0x12, 0x93, 0x3f,
+	0x12, 0x53, 0xb3, 0xdb, 0xf5, 0xd9, 0xcd, 0xcb, 0x2d, 0x2d, 0xce, 0xf5, 0xe3, 0x5c, 0x44, 0x37,
+	0xc4, 0x78, 0x1c, 0x05, 0x69, 0x99, 0x90, 0x7c, 0x9d, 0x3f, 0x69, 0xd9, 0x4a, 0x56, 0x78, 0xa6,
+	0x65, 0x96, 0x20, 0xbf, 0x6f, 0xc5, 0xfd, 0xb8, 0xa2, 0xeb, 0x44, 0x1b, 0x4f, 0x16, 0xf8, 0x50,
+	0xcf, 0x68, 0x12, 0xa8, 0xb3, 0x9c, 0xe9, 0x59, 0xfe, 0xa2, 0x01, 0x9f, 0xf0, 0x9a, 0xac, 0x6e,
+	0xf8, 0xd5, 0xf0, 0x5f, 0x26, 0x34, 0x40, 0xda, 0x09, 0xc4, 0xfc, 0x80, 0xb8, 0xdc, 0x9b, 0xcb,
+	0xe2, 0xec, 0x87, 0x0b, 0x7d, 0xfe, 0x06, 0xef, 0x49, 0x76, 0x1f, 0xad, 0x08, 0x7a, 0x0b, 0x3b,
+	0x2a, 0x45, 0x68, 0x24, 0xd3, 0x52, 0xfd, 0x1c, 0xf8, 0x8f, 0x6a, 0xab, 0xb2, 0x1b, 0x1e, 0x7f,
+	0xfd, 0xfe, 0xf3, 0x9b, 0xbd, 0x87, 0x06, 0xc1, 0xfd, 0x69, 0x20, 0xa2, 0x15, 0x6c, 0xa2, 0x70,
+	0x8b, 0x2e, 0xa0, 0xa7, 0x53, 0x89, 0xaa, 0x57, 0xf5, 0xa7, 0xc0, 0x1f, 0xd7, 0x97, 0x15, 0xe4,
+	0x50, 0x40, 0xf6, 0xd1, 0x6e, 0x01, 0x89, 0x16, 0x00, 0x65, 0x64, 0xd0, 0x63, 0x79, 0xb1, 0x91,
+	0x5f, 0xdf, 0x6b, 0x6e, 0x28, 0xcc, 0x91, 0xc0, 0x1c, 0xe0, 0x12, 0x73, 0x66, 0x4d, 0xd1, 0x47,
+	0x80, 0xd2, 0xf0, 0x1a, 0xb6, 0x91, 0x3a, 0x0d, 0xdb, 0xcc, 0x06, 0x7e, 0x22, 0x60, 0x1f, 0xfa,
+	0xb5, 0xe9, 0x39, 0x36, 0x01, 0x28, 0x9d, 0xae, 0xb1, 0x1b, 0xc1, 0xd1, 0xd8, 0xcd, 0x50, 0xe0,
+	0x23, 0x81, 0x7d, 0x30, 0xdd, 0xaf, 0x62, 0x07, 0xdc, 0x14, 0xc1, 0x46, 0x5a, 0x63, 0x5b, 0x2a,
+	0xc3, 0x4d, 0x50, 0x55, 0xc6, 0xf0, 0x6e, 0x55, 0x19, 0xd3, 0xaf, 0x55, 0x65, 0xb8, 0x37, 0x84,
+	0x32, 0x1f, 0x34, 0x7b, 0x13, 0xb6, 0x11, 0x89, 0x2a, 0xfb, 0x0a, 0xac, 0xf2, 0xc5, 0x74, 0x50,
+	0xc0, 0x4a, 0x5f, 0x84, 0x00, 0xa5, 0x67, 0x0b, 0xbe, 0xf5, 0x28, 0x14, 0x7c, 0x1b, 0xf6, 0xc6,
+	0x87, 0x02, 0xf8, 0x19, 0x7a, 0x6a, 0x00, 0x2b, 0x31, 0x82, 0x8d, 0x0c, 0xc6, 0xf6, 0x53, 0x57,
+	0xfc, 0xa5, 0x3e, 0xff, 0x15, 0x00, 0x00, 0xff, 0xff, 0x69, 0x4c, 0x6e, 0x6c, 0x84, 0x07, 0x00,
+	0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -637,6 +926,9 @@ type PostServiceClient interface {
 	CreatePost(ctx context.Context, in *CreatePostRequest, opts ...grpc.CallOption) (*CreatePostResponse, error)
 	UpdatePost(ctx context.Context, in *UpdatePostRequest, opts ...grpc.CallOption) (*UpdatePostResponse, error)
 	DeletePost(ctx context.Context, in *DeletePostRequest, opts ...grpc.CallOption) (*DeletePostResponse, error)
+	CreateLike(ctx context.Context, in *CreateLikeRequest, opts ...grpc.CallOption) (*CreateLikeResponse, error)
+	DeleteLike(ctx context.Context, in *DeleteLikeRequest, opts ...grpc.CallOption) (*DeleteLikeResponse, error)
+	CheckLiked(ctx context.Context, in *CheckLikedRequest, opts ...grpc.CallOption) (*CheckLikedResponse, error)
 }
 
 type postServiceClient struct {
@@ -692,6 +984,33 @@ func (c *postServiceClient) DeletePost(ctx context.Context, in *DeletePostReques
 	return out, nil
 }
 
+func (c *postServiceClient) CreateLike(ctx context.Context, in *CreateLikeRequest, opts ...grpc.CallOption) (*CreateLikeResponse, error) {
+	out := new(CreateLikeResponse)
+	err := c.cc.Invoke(ctx, "/post.PostService/CreateLike", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postServiceClient) DeleteLike(ctx context.Context, in *DeleteLikeRequest, opts ...grpc.CallOption) (*DeleteLikeResponse, error) {
+	out := new(DeleteLikeResponse)
+	err := c.cc.Invoke(ctx, "/post.PostService/DeleteLike", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *postServiceClient) CheckLiked(ctx context.Context, in *CheckLikedRequest, opts ...grpc.CallOption) (*CheckLikedResponse, error) {
+	out := new(CheckLikedResponse)
+	err := c.cc.Invoke(ctx, "/post.PostService/CheckLiked", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PostServiceServer is the server API for PostService service.
 type PostServiceServer interface {
 	GetPost(context.Context, *GetPostRequest) (*GetPostResponse, error)
@@ -699,6 +1018,9 @@ type PostServiceServer interface {
 	CreatePost(context.Context, *CreatePostRequest) (*CreatePostResponse, error)
 	UpdatePost(context.Context, *UpdatePostRequest) (*UpdatePostResponse, error)
 	DeletePost(context.Context, *DeletePostRequest) (*DeletePostResponse, error)
+	CreateLike(context.Context, *CreateLikeRequest) (*CreateLikeResponse, error)
+	DeleteLike(context.Context, *DeleteLikeRequest) (*DeleteLikeResponse, error)
+	CheckLiked(context.Context, *CheckLikedRequest) (*CheckLikedResponse, error)
 }
 
 // UnimplementedPostServiceServer can be embedded to have forward compatible implementations.
@@ -719,6 +1041,15 @@ func (*UnimplementedPostServiceServer) UpdatePost(ctx context.Context, req *Upda
 }
 func (*UnimplementedPostServiceServer) DeletePost(ctx context.Context, req *DeletePostRequest) (*DeletePostResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeletePost not implemented")
+}
+func (*UnimplementedPostServiceServer) CreateLike(ctx context.Context, req *CreateLikeRequest) (*CreateLikeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateLike not implemented")
+}
+func (*UnimplementedPostServiceServer) DeleteLike(ctx context.Context, req *DeleteLikeRequest) (*DeleteLikeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteLike not implemented")
+}
+func (*UnimplementedPostServiceServer) CheckLiked(ctx context.Context, req *CheckLikedRequest) (*CheckLikedResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckLiked not implemented")
 }
 
 func RegisterPostServiceServer(s *grpc.Server, srv PostServiceServer) {
@@ -815,6 +1146,60 @@ func _PostService_DeletePost_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PostService_CreateLike_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateLikeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostServiceServer).CreateLike(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/post.PostService/CreateLike",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostServiceServer).CreateLike(ctx, req.(*CreateLikeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostService_DeleteLike_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteLikeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostServiceServer).DeleteLike(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/post.PostService/DeleteLike",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostServiceServer).DeleteLike(ctx, req.(*DeleteLikeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _PostService_CheckLiked_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckLikedRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PostServiceServer).CheckLiked(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/post.PostService/CheckLiked",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PostServiceServer).CheckLiked(ctx, req.(*CheckLikedRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _PostService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "post.PostService",
 	HandlerType: (*PostServiceServer)(nil),
@@ -838,6 +1223,18 @@ var _PostService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeletePost",
 			Handler:    _PostService_DeletePost_Handler,
+		},
+		{
+			MethodName: "CreateLike",
+			Handler:    _PostService_CreateLike_Handler,
+		},
+		{
+			MethodName: "DeleteLike",
+			Handler:    _PostService_DeleteLike_Handler,
+		},
+		{
+			MethodName: "CheckLiked",
+			Handler:    _PostService_CheckLiked_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

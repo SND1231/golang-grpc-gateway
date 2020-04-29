@@ -65,6 +65,28 @@ func (s *server) DeletePost(ctx context.Context, in *pb.DeletePostRequest) (*pb.
 	}
 }
 
+// Create Like
+func (s *server) CreateLike(ctx context.Context, in *pb.CreateLikeRequest) (*pb.CreateLikeResponse, error) {
+	request := *in
+	id, err := post_app_service.CreateLike(request)
+	if err == nil {
+		return &pb.CreateLikeResponse{Id: id}, nil
+	} else {
+		return &pb.CreateLikeResponse{}, err
+	}
+}
+
+// Delete Like
+func (s *server) DeleteLike(ctx context.Context, in *pb.DeleteLikeRequest) (*pb.DeleteLikeResponse, error) {
+	request := *in
+	id, err := post_app_service.DeleteLike(request)
+	if err == nil {
+		return &pb.DeleteLikeResponse{Id: id}, nil
+	} else {
+		return &pb.DeleteLikeResponse{}, err
+	}
+}
+
 func main() {
 	lis, err := net.Listen("tcp", port)
 	if err != nil {

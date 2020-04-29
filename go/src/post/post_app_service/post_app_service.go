@@ -94,3 +94,30 @@ func DeletePost(request pb.DeletePostRequest) (int32, error) {
 	db.Where("id = ? AND user_id <> ?", id, user_id).Delete(model.Post{})
 	return id, nil
 }
+
+
+func CreateLike(request pb.CreateLikeRequest) (int32, error) {
+	err := post_service.LikeExists(request)
+	if err != nil {
+		return -1, err
+	}
+	var post model.Post
+	db := db.Connection()
+	defer db.Close()
+	db.Where(&post, request.PostId)
+
+	like := model.Like{UserId: request.UserId}
+	db.Create(&like)
+	db.Model(&post).Association("Likes").Append(&like)
+	if db.NewRecord(like) == false {
+		return like.ID, nil
+	}
+	return -1, status.New(codes.Unknown, "作成失敗").Err()
+}
+
+func DeleteLike(request pb.DeleteLikeRequest) (int32, error) {
+	db := db.Connection()
+	defer db.Close()
+	db.Where("id = ?", request.Id).Delete(model.Like{})
+	return request.Id, nil
+}

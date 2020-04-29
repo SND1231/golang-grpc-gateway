@@ -101,3 +101,20 @@ func CheckDeletePostRequest(request pb.DeletePostRequest) error {
 	}
 	return nil
 }
+
+func LikeExists(request pb.CreateLikeRequest) error {
+	db := db.Connection()
+	defer db.Close()
+
+	var post model.Post
+	db.Where(&post, request.PostId)
+
+	db.Preload("Likes").Find(&post)
+	fmt.Println(post.Likes)
+	//db.Where("user_id = ?", request.UserId).Related(&post, "Posts")
+	/*if like.ID == 0 {
+		return status.New(codes.AlreadyExists, "すでに、いいね済みです").Err()
+	}*/
+	//return status.New(codes.AlreadyExists, "すでに、いいね済みです").Err()
+	return nil
+}

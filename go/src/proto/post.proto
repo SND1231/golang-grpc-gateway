@@ -61,6 +61,35 @@ message DeletePostResponse {
   int32 id = 1;
 }
 
+message CreateLikeRequest {
+  int32 userId = 1;
+  int32 postId = 2;
+}
+
+message CreateLikeResponse {
+  int32 id = 1;
+  int32 count =2;
+}
+
+message DeleteLikeRequest {
+  int32 id = 1;
+}
+
+message DeleteLikeResponse {
+  int32 id = 1;
+  int32 count =2;
+}
+
+message CheckLikedRequest {
+  int32 userId = 1;
+  int32 postId = 2;
+}
+
+message CheckLikedResponse {
+  int32 id = 1;
+  bool liked =2;
+}
+
 service PostService {
   rpc GetPost(GetPostRequest) returns (GetPostResponse) {
     option (google.api.http) = {
@@ -87,6 +116,22 @@ service PostService {
   rpc DeletePost(DeletePostRequest) returns (DeletePostResponse) {
     option (google.api.http) = {
       delete: "/v1/posts/{id}/user/{userId}"
+    };
+  }
+  rpc CreateLike(CreateLikeRequest) returns (CreateLikeResponse) {
+    option (google.api.http) = {
+      post: "/v1/likes"
+      body: "*"
+    };
+  }
+  rpc DeleteLike(DeleteLikeRequest) returns (DeleteLikeResponse) {
+    option (google.api.http) = {
+      delete: "/v1/likes/{id}"
+    };
+  }
+  rpc CheckLiked(CheckLikedRequest) returns (CheckLikedResponse) {
+    option (google.api.http) = {
+      get: "/v1/likes/{userId}/{postId}" 
     };
   }
 }
