@@ -87,6 +87,16 @@ func (s *server) DeleteLike(ctx context.Context, in *pb.DeleteLikeRequest) (*pb.
 	}
 }
 
+// Check Liked
+func (s *server) CheckLiked(ctx context.Context, in *pb.CheckLikedRequest) (*pb.CheckLikedResponse, error) {
+	request := *in
+	is_liked, id := post_app_service.CheckLiked(request)
+	log.Println(id)
+	return &pb.CheckLikedResponse{Liked: is_liked, Id: id}, nil
+}
+
+
+
 func main() {
 	lis, err := net.Listen("tcp", port)
 	if err != nil {

@@ -47,7 +47,7 @@ func CreatePost(request pb.CreatePostRequest) (int32, error) {
 		return -1, err
 	}
 
-	post_param := model.Post{Tittle: request.Tittle, Content: request.Content,
+	post_param := model.Post{Title: request.Title, Content: request.Content,
 		PhotoUrl: request.PhotoUrl, UserId: request.UserId}
 
 	db := db.Connection()
@@ -67,7 +67,7 @@ func UpdatePost(request pb.UpdatePostRequest) (int32, error) {
 
 	id := request.Id
 
-	post_param := model.Post{Tittle: request.Tittle, Content: request.Content,
+	post_param := model.Post{Title: request.Title, Content: request.Content,
 		PhotoUrl: request.PhotoUrl}
 
 	db := db.Connection()
@@ -97,22 +97,26 @@ func DeletePost(request pb.DeletePostRequest) (int32, error) {
 
 
 func CreateLike(request pb.CreateLikeRequest) (int32, error) {
-	err := post_service.LikeExists(request)
+	err := post_service.CheckLikeExists(request)
 	if err != nil {
 		return -1, err
 	}
 	var post model.Post
 	db := db.Connection()
 	defer db.Close()
-	db.Where(&post, request.PostId)
+	db.First(&post, request.PostId)
 
 	like := model.Like{UserId: request.UserId}
 	db.Create(&like)
-	db.Model(&post).Association("Likes").Append(&like)
+	db.Model(&post).Association("Likes").Append([]model.Like{like})
 	if db.NewRecord(like) == false {
 		return like.ID, nil
 	}
 	return -1, status.New(codes.Unknown, "作成失敗").Err()
+}
+
+func CheckLiked(request pb.CheckLikedRequest) (bool, int32){
+	return post_service.LikeExists(request.PostId, request.UserId)
 }
 
 func DeleteLike(request pb.DeleteLikeRequest) (int32, error) {
@@ -121,3 +125,4 @@ func DeleteLike(request pb.DeleteLikeRequest) (int32, error) {
 	db.Where("id = ?", request.Id).Delete(model.Like{})
 	return request.Id, nil
 }
+

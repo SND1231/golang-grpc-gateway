@@ -53,7 +53,7 @@ func CheckGetPostsRequest(request pb.GetPostsRequest) error {
 
 func CheckCreatePostRequest(request pb.CreatePostRequest) error {
 	var error_list []*errdetails.BadRequest_FieldViolation
-	if request.Tittle == "" {
+	if request.Title == "" {
 		error_list = append(error_list, CreateBadRequest_FieldViolation("タイトル", "必須です"))
 	}
 	if request.Content == "" {
@@ -72,7 +72,7 @@ func CheckCreatePostRequest(request pb.CreatePostRequest) error {
 
 func CheckUpdatePostRequest(request pb.UpdatePostRequest) error {
 	var error_list []*errdetails.BadRequest_FieldViolation
-	if request.Tittle == "" {
+	if request.Title == "" {
 		error_list = append(error_list, CreateBadRequest_FieldViolation("タイトル", "必須です"))
 	}
 	if request.Content == "" {
@@ -102,19 +102,25 @@ func CheckDeletePostRequest(request pb.DeletePostRequest) error {
 	return nil
 }
 
-func LikeExists(request pb.CreateLikeRequest) error {
+func LikeExists(post_id int32, user_id int32) (bool, int32) {
 	db := db.Connection()
 	defer db.Close()
 
 	var post model.Post
-	db.Where(&post, request.PostId)
+	db.First(&post, post_id)
 
-	db.Preload("Likes").Find(&post)
-	fmt.Println(post.Likes)
-	//db.Where("user_id = ?", request.UserId).Related(&post, "Posts")
-	/*if like.ID == 0 {
+	var likes []model.Like
+	db.Model(&post).Where("user_id = ?", user_id).Related(&likes, "Likes")
+	if len(likes) == 0{
+		return false, 0
+	}
+	return true, likes[0].ID
+}
+
+func CheckLikeExists(request pb.CreateLikeRequest) error {
+	result, _ := LikeExists(request.PostId, request.UserId)
+	if result {
 		return status.New(codes.AlreadyExists, "すでに、いいね済みです").Err()
-	}*/
-	//return status.New(codes.AlreadyExists, "すでに、いいね済みです").Err()
+	}
 	return nil
 }

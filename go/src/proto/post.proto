@@ -5,10 +5,11 @@ import "google/api/annotations.proto";
 
 message Post {
   int32 id    = 1;
-  string tittle = 2;
+  string title = 2;
   string content = 3;
   string photoUrl =5;
   int32 userId = 6;
+  int32 likes = 7;
 }
 
 message GetPostRequest {
@@ -31,7 +32,7 @@ message GetPostsResponse {
 }
 
 message CreatePostRequest {
-  string tittle = 1;
+  string title = 1;
   string content= 2;
   string photoUrl =3;
   int32 userId = 4;
@@ -43,7 +44,7 @@ message CreatePostResponse {
 
 message UpdatePostRequest {
   int32 id = 1;
-  string tittle = 2;
+  string title = 2;
   string content= 3;
   string photoUrl =4;
 }

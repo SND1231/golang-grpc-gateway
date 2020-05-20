@@ -142,7 +142,7 @@ func main() {
 		handlers.AllowedHeaders([]string{"Authorization", "Content-Type", "Accept-Encoding", "Accept"}),
 	)(mux)
 
-	err = http.ListenAndServe(":8080", handler)
+	err = http.ListenAndServe(":8081", handler)
 	if err != nil {
 		log.Fatal(err)
 	}

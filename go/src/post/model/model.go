@@ -6,7 +6,7 @@ import (
 
 type Post struct {
 	ID        int32
-	Tittle    string
+	Title    string
 	Content   string
 	PhotoUrl  string
 	UserId    int32
