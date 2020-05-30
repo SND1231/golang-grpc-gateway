@@ -28,8 +28,8 @@ func (s *server) GetPost(ctx context.Context, in *pb.GetPostRequest) (*pb.GetPos
 
 // GET Posts
 func (s *server) GetPosts(ctx context.Context, in *pb.GetPostsRequest) (*pb.GetPostsResponse, error) {
-	posts, err := post_app_service.GetPosts(*in)
-	return &pb.GetPostsResponse{Posts: posts}, err
+	posts, count, err := post_app_service.GetPosts(*in)
+	return &pb.GetPostsResponse{Posts: posts, Count:count}, err
 }
 
 // Create Post

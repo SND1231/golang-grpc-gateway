@@ -114,9 +114,6 @@ func CheckUpdateUserRequest(request pb.UpdateUserRequest) error {
 	if request.Name == "" {
 		error_list = append(error_list, CreateBadRequest_FieldViolation("名前", "必須です"))
 	}
-	if request.Email == "" {
-		error_list = append(error_list, CreateBadRequest_FieldViolation("Email", "必須です"))
-	}
 
 	if len(error_list) > 0 {
 		return CreateError(codes.InvalidArgument, error_list)

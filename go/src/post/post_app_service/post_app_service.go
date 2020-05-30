@@ -10,13 +10,14 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-func GetPosts(request pb.GetPostsRequest) ([]*pb.Post, error) {
+func GetPosts(request pb.GetPostsRequest) ([]*pb.Post, int32, error) {
 	var posts []model.Post
 	var postList []*pb.Post
+	var count int32
 
 	err := post_service.CheckGetPostsRequest(request)
 	if err != nil {
-		return postList, err
+		return postList, 0, err
 	}
 
 	limit := request.Limit
@@ -24,10 +25,21 @@ func GetPosts(request pb.GetPostsRequest) ([]*pb.Post, error) {
 
 	db := db.Connection()
 	defer db.Close()
-	db.Limit(limit).Offset(offset).
-		Find(&posts).Scan(&postList)
+	if request.Id != 0{
+		db.Where("user_id = ?", request.Id).Limit(limit).Offset(offset).Order("id desc").
+		   Find(&posts).Scan(&postList)
+		db.Table("posts").Where("user_id = ?", request.Id).Find(&posts).Count(&count)
+	}else{
+		db.Limit(limit).Offset(offset).Order("id desc").
+		   Find(&posts).Scan(&postList)
+		db.Table("posts").Find(&posts).Count(&count)
+	}
+	
+	for i := 0; i < len(postList); i++{
+		postList[i].Likes = post_service.CountLikes(postList[i].Id)
+	}
 
-	return postList, nil
+	return postList, count, nil
 }
 
 func GetPost(id int32) (pb.Post, error) {
@@ -37,6 +49,8 @@ func GetPost(id int32) (pb.Post, error) {
 	db := db.Connection()
 	defer db.Close()
 	db.Find(&post, id).Scan(&post_param)
+
+	post_param.Likes = post_service.CountLikes(post_param.Id)
 
 	return post_param, nil
 }
@@ -91,7 +105,7 @@ func DeletePost(request pb.DeletePostRequest) (int32, error) {
 
 	db := db.Connection()
 	defer db.Close()
-	db.Where("id = ? AND user_id <> ?", id, user_id).Delete(model.Post{})
+	db.Where("id = ? AND user_id = ?", id, user_id).Delete(model.Post{})
 	return id, nil
 }
 

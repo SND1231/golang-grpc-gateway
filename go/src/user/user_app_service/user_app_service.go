@@ -58,7 +58,7 @@ func LoginUser(request pb.LoginRequest) (int32, string, error) {
 	err = bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(request.Password))
 
 	if err != nil {
-		return -1, "", status.New(codes.InvalidArgument, "無効なパスワードです").Err()
+		return -1, "", status.New(codes.InvalidArgument, "無効なEmail または　無効なパスワードです").Err()
 	}
 
 	token, err = user_service.CreateToken(user)
@@ -111,8 +111,7 @@ func UpdateUser(request pb.UpdateUserRequest) (int32, error) {
 		return -1, err
 	}
 
-	user_param := model.User{Name: request.Name, Email: request.Email,
-		PhotoUrl: request.PhotoUrl}
+	user_param := model.User{Name: request.Name, PhotoUrl: request.PhotoUrl}
 
 	db := db.Connection()
 	defer db.Close()

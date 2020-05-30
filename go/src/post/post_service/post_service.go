@@ -124,3 +124,12 @@ func CheckLikeExists(request pb.CreateLikeRequest) error {
 	}
 	return nil
 }
+
+func CountLikes(id int32) int32 {
+	var count int32
+	db := db.Connection()
+	defer db.Close()
+
+	db.Table("post_likes").Where("post_id = ?", id).Count(&count)
+	return count
+}

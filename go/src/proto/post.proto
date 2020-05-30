@@ -29,6 +29,7 @@ message GetPostsRequest {
 
 message GetPostsResponse {
   repeated Post posts = 1;
+  int32 count = 2;
 }
 
 message CreatePostRequest {
