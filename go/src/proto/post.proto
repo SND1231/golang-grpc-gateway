@@ -24,7 +24,7 @@ message GetPostsRequest {
   int32 limit = 1;
   int32 offset = 2;
   int32 id = 3;
-  string name = 4; 
+  string title = 4; 
 }
 
 message GetPostsResponse {

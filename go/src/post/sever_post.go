@@ -29,7 +29,7 @@ func (s *server) GetPost(ctx context.Context, in *pb.GetPostRequest) (*pb.GetPos
 // GET Posts
 func (s *server) GetPosts(ctx context.Context, in *pb.GetPostsRequest) (*pb.GetPostsResponse, error) {
 	posts, count, err := post_app_service.GetPosts(*in)
-	return &pb.GetPostsResponse{Posts: posts, Count:count}, err
+	return &pb.GetPostsResponse{Posts: posts, Count: count}, err
 }
 
 // Create Post
@@ -94,8 +94,6 @@ func (s *server) CheckLiked(ctx context.Context, in *pb.CheckLikedRequest) (*pb.
 	log.Println(id)
 	return &pb.CheckLikedResponse{Liked: is_liked, Id: id}, nil
 }
-
-
 
 func main() {
 	lis, err := net.Listen("tcp", port)

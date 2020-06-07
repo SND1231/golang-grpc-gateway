@@ -111,7 +111,7 @@ func LikeExists(post_id int32, user_id int32) (bool, int32) {
 
 	var likes []model.Like
 	db.Model(&post).Where("user_id = ?", user_id).Related(&likes, "Likes")
-	if len(likes) == 0{
+	if len(likes) == 0 {
 		return false, 0
 	}
 	return true, likes[0].ID
